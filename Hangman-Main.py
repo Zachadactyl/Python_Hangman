@@ -8,12 +8,11 @@ import random
 
 file = open("Hangman_Dictionary.txt", "r")
 
-WillPlay = input("Welcome to hangman! Press |s| to start or |q| to quit.")
+WillPlay = input("Welcome to hangman! Press |s| to start or |q| to quit. ")
 
-if WillPlay.lower() != "q":
-    print(file.readline(1))
-    WillPlay = input("Welcome to hangman! Press |s| to start.")
-else:
-    WillPlay.lower() == "q"
+while WillPlay.lower() != "q":
+    line = file.readline()
+    print(line)
+    WillPlay = input("Welcome to hangman! Press |s| to start or |q| to quit. ")
 
 
