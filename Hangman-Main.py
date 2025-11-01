@@ -6,10 +6,12 @@ import turtle
 import random
 
 
+file = open("Hangman_Dictionary.txt", "r")
+
 WillPlay = input("Welcome to hangman! Press |s| to start or |q| to quit.")
 
 if WillPlay.lower() != "q":
-    print("testbox")
+    print(file.readline(1))
     WillPlay = input("Welcome to hangman! Press |s| to start.")
 else:
     WillPlay.lower() == "q"

@@ -1,1 +1,6 @@
-
+Coding
+Python
+Variable
+Text
+String
+Variable
