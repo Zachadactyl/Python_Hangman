@@ -10,11 +10,14 @@ MAX_INCORRECT_GUESSES = 6
 
 def load_word_bank(filename):
     """
-    Loads all words from the specified file into a list.
+    Loads all words from the specified file into a list using manual open/close.
     WARNING: Will raise FileNotFoundError if the file does not exist.
     """
-    with open(filename, 'r') as file:
-        words = [word.strip().upper() for word in file if word.strip()]
+    file = open(filename, 'r') # Manually open the file
+    
+    words = [word.strip().upper() for word in file if word.strip()]
+    
+    file.close() # Manually close the file
     
     if not words:
         return ["PYTHON", "HANGMAN", "CODE"]
@@ -30,41 +33,44 @@ def add_words_to_bank(filename):
     print("\n--- ADD WORDS TO DICTIONARY ---")
     print("Enter new words, one at a time. Enter 'DONE' when finished.")
     
-    with open(filename, 'a') as file:
-        while True:
-            new_word = input("Enter new word (or DONE): ").strip().upper()
-            
-            if new_word == "DONE":
-                break
-            
-            if new_word.isalpha() and len(new_word) > 1:
-                file.write(new_word + "\n")
-                print(f"'{new_word}' added.")
-            else:
-                print("⚠️ Invalid input. Please enter a word with only letters.")
+    file = open(filename, 'a') # Manually open for appending
+
+    while True:
+        new_word = input("Enter new word (or DONE): ").strip().upper()
+        
+        if new_word == "DONE":
+            break
+        
+        if new_word.isalpha() and len(new_word) > 1:
+            file.write(new_word + "\n")
+            print(f"'{new_word}' added.")
+        else:
+            print("⚠️ Invalid input. Please enter a word with only letters.")
     
+    file.close() # Manually close the file
     print("\nDictionary update complete.")
     return load_word_bank(filename)
 
 
-# --- 2. STATS I/O (Error Handling Removed) ---
+# --- 2. STATS I/O (Manual Open/Close) ---
 
 def load_and_update_stats(result):
     """
-    Loads stats, updates them based on the game result ('W' or 'L'), and saves the file.
-    WARNING: Will raise FileNotFoundError if stats.txt doesn't exist.
+    Loads stats, updates them, and saves the file using manual open/close.
+    WARNING: Will crash if stats.txt doesn't exist.
     """
     
-    # Initialize default stats (used only if file loading is skipped or fails externally)
     stats = {"WINS": 0, "LOSSES": 0}
 
     # 1. Load existing stats (Reading the file)
-    # This assumes stats.txt *exists* and is formatted correctly.
-    with open(STATS_FILE, 'r') as f:
-        for line in f:
-            if ':' in line:
-                key, value = line.split(':', 1)
-                stats[key.strip()] = int(value.strip())
+    f = open(STATS_FILE, 'r') # Manually open
+    
+    for line in f:
+        if ':' in line:
+            key, value = line.split(':', 1)
+            stats[key.strip()] = int(value.strip())
+            
+    f.close() # Manually close
         
     # 2. Update stats based on result (if a game was just played)
     if result == 'W':
@@ -72,19 +78,20 @@ def load_and_update_stats(result):
     elif result == 'L':
         stats["LOSSES"] += 1
     elif result is None:
-        # If result is None, we just loaded the stats, no update needed, return existing values
         return stats
         
     # 3. Write back to the file
-    with open(STATS_FILE, 'w') as f:
-        f.write(f"WINS: {stats['WINS']}\n")
-        f.write(f"LOSSES: {stats['LOSSES']}\n")
+    f = open(STATS_FILE, 'w') # Manually open for writing
+    
+    f.write(f"WINS: {stats['WINS']}\n")
+    f.write(f"LOSSES: {stats['LOSSES']}\n")
+    
+    f.close() # Manually close
 
     return stats
 
 def show_stats(word_list):
     """Loads and displays the game statistics."""
-    # Note: If stats.txt doesn't exist, this function will raise FileNotFoundError
     stats = load_and_update_stats(None) 
     
     print("\n--- GAME STATS ---")
@@ -100,6 +107,7 @@ def show_stats(word_list):
 
 
 # --- 3. GAME INPUT AND VISUALS ---
+# (No changes needed for these functions)
 
 def get_user_guess(guessed_letters):
     """Prompts the user for a letter and validates the input."""
@@ -119,7 +127,7 @@ def draw_hangman(incorrect_guesses):
     print(f"[Placeholder] Hangman State: {incorrect_guesses} incorrect guesses (You have {remaining} left)")
 
 
-# --- 4. MAIN GAME LOGIC (Updated to save stats) ---
+# --- 4. MAIN GAME LOGIC ---
 
 def start_new_game(word_list):
     """The main gameplay loop where the user guesses letters."""
@@ -174,7 +182,6 @@ def start_new_game(word_list):
 
 def main_menu():
     """Manages the user interface and routes to different functions."""
-    # WARNING: This will crash if Hangman_Dictionary.txt does not exist
     current_word_bank = load_word_bank(WORD_BANK_FILE)
     
     print("✨ Welcome to Command-Line Hangman! ✨")
@@ -201,7 +208,6 @@ def main_menu():
             
         elif choice == '4':
             print("\nThanks for playing! Goodbye.")
-            sys.exit(0)
             
         else:
-            print("⚠️ **Invalid option.** Please choose a number from 1 to 4.")
+            print("Invalid option. Please choose a number from 1 to 4.")
