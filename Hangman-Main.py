@@ -5,6 +5,11 @@
 import turtle
 import random
 
+from word import Hangman_Dictionary.txt
+chosen_word = random.choice(Hangman.Dictionary.txt)
+print("The secret wored has been chosen!")
+print("_ " * len(chosen_word))
+
 
 file = open("Hangman_Dictionary.txt", "r")
 
@@ -14,5 +19,6 @@ while WillPlay.lower() != "q":
     line = file.readline()
     print(line)
     WillPlay = input("Welcome to hangman! Press |s| to start or |q| to quit. ")
+
 
 
