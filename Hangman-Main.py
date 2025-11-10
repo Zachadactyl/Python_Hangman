@@ -24,11 +24,11 @@ def main_menu():
 
         if menu_input == "1":
             print("Starting Game: ")
-            words = [word.strip().upper() for word in "Hangman_Dictionary.txt"]
+            file = open("Hangman_Dictionary.txt", "r")
+            words = [word.strip().upper() for word in file]
             chosen_word = random.choice(words)
             print("The secret wored has been chosen!")
             print("_ " * len(chosen_word))
-            print(chosen_word)
         elif menu_input == "2":
             print("\n--- ADD WORDS TO DICTIONARY ---")
             print("Enter new words, one at a time. Enter 'DONE' when finished.")
@@ -36,7 +36,7 @@ def main_menu():
             file = open(f"Hangman_Dictionary.txt", 'a') # Manually open for appending
 
             while True:
-                new_word = input("Enter new word (or DONE): ").strip().upper()
+                new_word = input("Enter new word (or DONE): ").strip().lower()
         
                 if new_word == "DONE":
                     break
