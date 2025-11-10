@@ -6,9 +6,6 @@ import turtle
 import random
 import matplotlib.pyplot as plt
 
-file = open("Hangman_Dictionary.txt", "r")
-
-
 def main_menu():
     print("Welcome to Command-Line Hangman! Choose an option to continue... \n")
     while True:
@@ -27,8 +24,10 @@ def main_menu():
             file = open("Hangman_Dictionary.txt", "r")
             words = [word.strip().upper() for word in file]
             chosen_word = random.choice(words)
-            print("The secret wored has been chosen!")
+            print("The secret wored has been chosen! \n")
             print("_ " * len(chosen_word))
+            file.close()
+            print
         elif menu_input == "2":
             print("\n--- ADD WORDS TO DICTIONARY ---")
             print("Enter new words, one at a time. Enter 'DONE' when finished.")
@@ -64,8 +63,6 @@ def show_stats():
     plt.plot(wins, losses, color='green', marker='o')
     plt.show()
 
-
-file.close()
 if __name__ == "__main__":
     # Call the main entry point of the application
     main_menu()
