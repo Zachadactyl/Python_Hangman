@@ -4,7 +4,7 @@
 
 import turtle
 import random
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 file = open("Hangman_Dictionary.txt", "r")
 
@@ -57,6 +57,11 @@ def main_menu():
         else:
             print("Invalid option. Please choose a number from 1 to 4.")
 
+def show_stats():
+    wins = [1, 2, 3]
+    losses = [2, 4, 6]
+    plt.plot(wins, losses, color='green', marker='o')
+    plt.show()
 
 
 file.close()
