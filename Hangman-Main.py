@@ -8,10 +8,6 @@ import matplotlib.pyplot as plt
 
 file = open("Hangman_Dictionary.txt", "r")
 
-words = [word.strip().upper() for word in file]
-chosen_word = random.choice(words)
-print("The secret wored has been chosen!")
-print("_ " * len(chosen_word))
 
 def main_menu():
     print("Welcome to Command-Line Hangman! Choose an option to continue... \n")
@@ -28,6 +24,11 @@ def main_menu():
 
         if menu_input == "1":
             print("Starting Game: ")
+            words = [word.strip().upper() for word in "Hangman_Dictionary.txt"]
+            chosen_word = random.choice(words)
+            print("The secret wored has been chosen!")
+            print("_ " * len(chosen_word))
+            print(chosen_word)
         elif menu_input == "2":
             print("\n--- ADD WORDS TO DICTIONARY ---")
             print("Enter new words, one at a time. Enter 'DONE' when finished.")
