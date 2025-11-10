@@ -6,7 +6,7 @@ string
 variable
 loop
 file
-Debug
+debug
 data
 byte
 code
@@ -15,4 +15,4 @@ print
 while
 float
 integer
-TYPING
+typing
