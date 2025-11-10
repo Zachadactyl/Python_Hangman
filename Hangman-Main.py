@@ -4,6 +4,7 @@
 
 import turtle
 import random
+import matplotlib as plt
 
 file = open("Hangman_Dictionary.txt", "r")
 
