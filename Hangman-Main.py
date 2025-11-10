@@ -53,7 +53,7 @@ def main_menu():
             show_stats()
         elif menu_input == "4":
             print("\nThanks for playing! Goodbye.")
-            
+            break
         else:
             print("Invalid option. Please choose a number from 1 to 4.")
 
