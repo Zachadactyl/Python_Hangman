@@ -28,7 +28,7 @@ def main_menu():
             print("The secret wored has been chosen! \n")
             print("_ " * len(chosen_word))
             file.close()
-            print
+            print(chosen_word)
         elif menu_input == "2":
             print("\n--- ADD WORDS TO DICTIONARY ---")
             print("Enter new words, one at a time. Enter 'DONE' when finished.")
@@ -59,12 +59,11 @@ def main_menu():
             print("Invalid option. Please choose a number from 1 to 4.")
 
 #def show_stats: Cole Boehlert
-def show_stats():
+def show_stats():    
     wins = [1, 2, 3]
     losses = [2, 4, 6]
     plt.plot(wins, losses, color='green', marker='o')
     plt.show()
-
 
 #brought in from previous Python project done by Zachary Tull, February 23, 2025
 if __name__ == "__main__":
