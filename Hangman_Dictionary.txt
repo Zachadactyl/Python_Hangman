@@ -16,3 +16,4 @@ while
 float
 integer
 typing
+bird
