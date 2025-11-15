@@ -64,7 +64,7 @@ def show_stats():
     categories = ['Wins', 'Losses']
     values = []
     color = ['gold', 'red']
-    open(#file name here, 'r') as f
+    open(stats.txt, 'r') as f
     for i in f:
         f.readlines()
         values.append(f)
@@ -82,5 +82,6 @@ def show_stats():
 if __name__ == "__main__":
     # Call the main entry point of the application
     main_menu()
+
 
 
