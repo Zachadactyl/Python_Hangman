@@ -60,12 +60,26 @@ def main_menu():
 
 #def show_stats: Cole Boehlert
 def show_stats():    
-    wins = [1, 2, 3]
-    losses = [2, 4, 6]
-    plt.plot(wins, losses, color='green', marker='o')
-    plt.show()
+    # whats in it
+categories = ['Wins', 'Losses']
+values = []
+color = ['gold', 'red']
+open(#file name here, 'r') as f
+for i in f:
+    f.readlines()
+    values.append(f)
+
+f.close()    
+
+# presentation
+plt.bar(categories, values, color = color)
+plt.xlabel('Games')
+plt.ylabel('Rounds')
+plt.title('Hangman Graph')
+plt.show()
 
 #brought in from previous Python project done by Zachary Tull, February 23, 2025
 if __name__ == "__main__":
     # Call the main entry point of the application
     main_menu()
+
