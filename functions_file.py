@@ -6,7 +6,7 @@ import random
 import matplotlib.pyplot as plt
 
 # --- GAME CONSTANTS ---
-STATS_FILE = "hangman_stats.txt" # File to store wins and losses history (e.g., WWLWL)
+STATS_FILE = "stats.txt" # File to store wins and losses history (e.g., WWLWL)
 # FIX: The file path must include the subfolder name where the file is located.
 DICTIONARY_FILE = "Python_Hangman/Hangman_Dictionary.txt" 
 MAX_INCORRECT_GUESSES = 6 # Maximum number of incorrect guesses allowed
@@ -218,21 +218,21 @@ def add_words_to_dictionary():
 
 
 # def show_stats: Cole Boehlert
-def show_stats():
-    """Loads, displays, and plots game statistics (W/L ratio) progression."""
-    # Load dictionary words to get total count
-    try:
-        with open(DICTIONARY_FILE, "r") as file: # Path updated to DICTIONARY_FILE constant
-            # Filter out empty lines and convert to uppercase
-            word_list = [word.strip() for word in file if word.strip()]
-    except FileNotFoundError:
-        word_list = []
-        
-    # Get stats counts and the full history list
-    stats, history = load_and_update_stats() 
-    total_games = stats['WINS'] + stats['LOSSES']
-    
-    print("\n--- GAME STATS ---")
+#def show_stats():
+#    """Loads, displays, and plots game statistics (W/L ratio) progression."""
+#    # Load dictionary words to get total count
+#    try:
+#        with open(DICTIONARY_FILE, "r") as file: # Path updated to DICTIONARY_FILE constant
+#            # Filter out empty lines and convert to uppercase
+#            word_list = [word.strip() for word in file if word.strip()]
+#    except FileNotFoundError:
+#        word_list = []
+#        
+#    # Get stats counts and the full history list
+#    stats, history = load_and_update_stats() 
+#    total_games = stats['WINS'] + stats['LOSSES']
+#    
+#    print("\n--- GAME STATS ---")
 #    print(f"Total words currently in dictionary: {len(word_list)}")
 #    print(f"Games Won: {stats['WINS']}")
 #    print(f"Games Lost: {stats['LOSSES']}")
