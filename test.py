@@ -4,7 +4,7 @@
 
 import random
 import matplotlib.pyplot as plt
-from functions_file import start_game, DICTIONARY_FILE, show_stats, add_words_to_dictionary, load_and_update_stats, MAX_INCORRECT_GUESSES, STATS_FILE
+from functions_file import start_game, DICTIONARY_FILE, add_words_to_dictionary, load_and_update_stats, MAX_INCORRECT_GUESSES, STATS_FILE, show_stats
 def main_menu():
     """The main entry point for the Hangman game application."""
     print("Welcome to Command-Line Hangman! Choose an option to continue... \n")
@@ -44,7 +44,8 @@ def main_menu():
             add_words_to_dictionary()
             
         elif menu_input == "3":
-            show_stats()
+#            show_stats()
+             print("option 3 works")
             
         elif menu_input == "4":
             print("\nThanks for playing! Goodbye.")
